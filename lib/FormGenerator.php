@@ -2,16 +2,33 @@
 
 class FormGenerator {
 	
-	public function __construct(String $formName, String $formMethod, String $formAction, Array $attr) {
-		try {
+	public function __construct(String $formName, String $formMethod, String $formAction, Array $formAttr = array()) {
+		if (!empty($formName)) {
 			$this->formName = $formName;
-			$this->formMethod = $formMethod;
-			$this->formAction = $formAction;
-			
-		} catch (Exception $exc) {
-			echo $exc->getTraceAsString();
+		} else {
+			return false;
 		}
-
+		
+		if (!empty($formMethod)) {
+			$this->formMethod = $formMethod;
+		} else {
+			return false;
+		}
+		
+		if (!empty($formAction)) {
+			$this->formAction = $formAction;
+		} else {
+			return false;
+		}
+		
+		$this->formAttr = $formAttr;
+		
+		return true;
+	}
+	
+	
+	
+	public function addTextarea(String $name, String $value = '', array $attr = array()) {
 		
 	}
 	
